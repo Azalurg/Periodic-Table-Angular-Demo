@@ -1,27 +1,77 @@
-# PeriodicTable
+# Periodic Table
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.2.
+Angular demo with Angular Material
 
-## Development server
+## Overview
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+This project is an Angular-based application that displays a table of chemical elements from the periodic table. The application includes functionality for:
 
-## Code scaffolding
+- Viewing a list of elements with their atomic number, name, atomic weight, and symbol.
+- Simulating data fetching during application startup.
+- Editing any field within a table record via a popup modal with inputs.
+- Updating the table row upon confirmation of edits without mutating the data.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+The application is built using Angular 18.2.2 and leverages Angular Material components to create a responsive, user-friendly UI.
 
-## Build
+## Requirements
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- **Angular 18.2.2**
+- **Angular Material** (https://material.angular.io/)
 
-## Running unit tests
+## Initial Data
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+The application starts with the following predefined dataset:
 
-## Running end-to-end tests
+```typescript
+const ELEMENT_DATA: PeriodicElement[] = [
+  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
+  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
+  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
+  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
+  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
+  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
+  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
+  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
+  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
+  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
+];
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Project Setup
 
-## Further help
+### Prerequisites
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Ensure that you have Node.js and Angular CLI installed on your system.
+
+1. Install Node.js: https://nodejs.org/
+2. Install Angular CLI:
+
+   ```bash
+   npm install -g @angular/cli
+   ```
+
+3. Clone the repository.
+
+   ```bash
+   git clone https://github.com/Azalurg/Periodic-Table-Angular-Demo.git
+   ```
+
+4. Navigate to the project directory:
+
+   ```bash
+   cd Periodic-Table-Angular-Demo/
+   ```
+
+5. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+6. Serve the application:
+
+   ```bash
+   ng serve
+   ```
+
+   The application will be available at `http://localhost:4200/`.
