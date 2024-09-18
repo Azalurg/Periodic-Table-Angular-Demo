@@ -3,6 +3,11 @@
 </div>
 
 <div *ngIf="!isLoading">
+    <mat-form-field>
+        <mat-label>Filter</mat-label>
+        <input matInput (input)="onFilterInputChange($event)" placeholder="Ex. Hydrogen">
+    </mat-form-field>
+    
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
         <ng-container matColumnDef="position">
             <th mat-header-cell *matHeaderCellDef> No. </th>
