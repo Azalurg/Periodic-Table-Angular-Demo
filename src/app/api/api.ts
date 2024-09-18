@@ -15,7 +15,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
 
 export function getPeriodicTableData(): Promise<PeriodicElement[]> {
   return new Promise((resolve) => {
-    const delay = Math.floor(Math.random() * 2000) + 1000;
+    const delay = Math.floor(Math.random() * 500) + Math.floor(Math.random() * 500);
     setTimeout(() => {
       resolve(ELEMENT_DATA);
     }, delay);
