@@ -1,5 +1,7 @@
 <div *ngIf="isLoading">
-    <p>Loading data...</p>
+    <mat-card appearance="outlined">
+        <mat-card-content style="color: white;">Loading data...</mat-card-content>
+    </mat-card>
 </div>
 
 <div *ngIf="!isLoading">
@@ -7,7 +9,7 @@
         <mat-label>Filter</mat-label>
         <input matInput (input)="onFilterInputChange($event)" placeholder="Ex. Hydrogen">
     </mat-form-field>
-    
+
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
         <ng-container matColumnDef="position">
             <th mat-header-cell *matHeaderCellDef> No. </th>

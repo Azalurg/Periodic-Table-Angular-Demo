@@ -7,6 +7,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCardModule } from '@angular/material/card';
 
 import { getPeriodicTableData } from '../api/api';
 import {
@@ -31,6 +32,7 @@ export interface PeriodicElement {
     MatFormFieldModule,
     MatInputModule,
     MatTableModule,
+    MatCardModule
   ],
   templateUrl: './periodic-table.component.html',
   styleUrl: './periodic-table.component.scss',
