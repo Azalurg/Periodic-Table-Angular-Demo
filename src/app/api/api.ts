@@ -1,3 +1,6 @@
+import { Observable, of } from 'rxjs';
+import { delay } from 'rxjs/operators';
+
 import { PeriodicElement } from '../periodic-table/periodic-table.component';
 
 const ELEMENT_DATA: PeriodicElement[] = [
@@ -13,12 +16,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
   { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
 ];
 
-export function getPeriodicTableData(): Promise<PeriodicElement[]> {
-  return new Promise((resolve) => {
-    const delay =
-      Math.floor(Math.random() * 500) + Math.floor(Math.random() * 500);
-    setTimeout(() => {
-      resolve(ELEMENT_DATA);
-    }, delay);
-  });
+export function getPeriodicTableData(): Observable<PeriodicElement[]> {
+  const random_delay = Math.floor(Math.random() * 300) + 100;
+  return of(ELEMENT_DATA).pipe(delay(random_delay));
 }
