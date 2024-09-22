@@ -4,10 +4,10 @@
     </mat-card>
 
     <ng-container *ngIf="!isLoading">
-        <!-- <mat-form-field>
-        <mat-label>Filter</mat-label>
-        <input matInput (input)="onFilterInputChange($event.target.value)" placeholder="Ex. Hydrogen">
-    </mat-form-field> -->
+        <mat-form-field>
+            <mat-label>Filter</mat-label>
+            <input matInput (input)="onFilterInputChange($event)" placeholder="Ex. Hydrogen">
+        </mat-form-field>
 
         <table *rxLet="dataSource$; let dataSource" mat-table [dataSource]="dataSource" class="mat-elevation-z8">
             <ng-container matColumnDef="position">

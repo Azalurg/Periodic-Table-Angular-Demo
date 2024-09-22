@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { debounceTime, Observable, of, Subscription } from 'rxjs';
-import { map, catchError, startWith, endWith } from 'rxjs';
+import { debounceTime, startWith, Subject, map, endWith } from 'rxjs';
 
 import { MatTableModule } from '@angular/material/table';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { MatTableDataSource } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
@@ -40,23 +38,35 @@ export interface PeriodicElement {
   ],
   providers: [RxState],
   templateUrl: './periodic-table.component.html',
-  styleUrl: './periodic-table.component.scss',
+  styleUrls: ['./periodic-table.component.scss'],
 })
 export class PeriodicTableComponent {
+  private filterInputSubject = new Subject<string>();
+
   private state = rxState<{
     dataSource: PeriodicElement[];
     filteredData: PeriodicElement[];
     filterValue: string;
     isLoading: boolean;
   }>(({ set, connect }) => {
-    set({ dataSource: [], filteredData: [], isLoading: true});
+    set({ dataSource: [], filteredData: [], isLoading: true, filterValue: '' });
+
     connect(
       getPeriodicTableData().pipe(
         map((data) => ({
           dataSource: data,
           filteredData: data,
         })),
+        startWith({ isLoading: true }),
         endWith({ isLoading: false })
+      )
+    );
+
+    connect(
+      'filteredData',
+      this.filterInputSubject.pipe(
+        debounceTime(2000),
+        map((filterValue) => this.filterData(filterValue))
       )
     );
   });
@@ -89,7 +99,19 @@ export class PeriodicTableComponent {
     });
   }
 
-  onFilterInputChange(filterValue: string): void {
-    // this.state.set({ filter: filterValue });
+  onFilterInputChange(event: Event): void {
+    const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
+    this.filterInputSubject.next(filterValue);
+  }
+
+  private filterData(filterValue: string): any[] {
+    return this.state.get('dataSource').filter((element) => {
+      return Object.values(element).some(
+        (value) =>
+          value !== null &&
+          value !== undefined &&
+          value.toString().toLowerCase().includes(filterValue)
+      );
+    });
   }
 }
